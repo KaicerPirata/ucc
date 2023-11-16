@@ -9,19 +9,6 @@ terraform {
 
 provider "docker" {}
 
-resource "docker_image" "pentahoo" {
-  name         = "pentaho7biserver:6.0"
-  
-}
-
-resource "docker_container" "pentaho_container" {
-  image = docker_image.pentahoo.image_id
-  name  = "servidor"
-  ports {
-    internal = 8080
-    external = 8000
-  }
-}
 
 resource "docker_image" "nodejs_image" {
     name = "williamaguilera/mecadato_2:latest"
@@ -44,7 +31,7 @@ resource "docker_image" "python" {
 }
 
 resource "docker_image" "postgres" {
-    name = "postgres"
+    name = "williamaguiler/posgres"
 
 }
 
@@ -52,8 +39,8 @@ resource "docker_container" "postgresql" {
   image = docker_image.postgres.image_id
   name  = "postgresql"
   ports {
-      internal = 5432
-      external = 5432
+      internal = 9876
+      external = 9876
     }
 
   env = ["POSTGRES_USER=postgres", 
