@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "2.23.1"
+      version = "~> 3.0.1"
     }
   }
 }
@@ -24,12 +24,7 @@ resource "docker_container" "pentaho_container" {
 }
 
 resource "docker_image" "nodejs_image" {
-    name = "nodejsapp"
-
-    build{
-        path = "../nodejs_api/node-app-http-docker"
-        dockerfile = "Dockerfile"
-    }
+    name = "williamaguilera/mecadato_2:latest"
 
 }
 
@@ -44,12 +39,7 @@ resource "docker_container" "nodeapi" {
 }
 
 resource "docker_image" "python" {
-    name = "python_etl"
-
-    build{
-        path = "../etl/ETL_Energy_Consumption"
-        dockerfile = "dockerfile"
-    }
+    name = "williamaguilera/imagephyton:latest"
 
 }
 
